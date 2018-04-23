@@ -307,7 +307,7 @@ def hid_get_feature_report(device, data):
 
     buf = create_string_buffer(len(data))
     for n in range(len(data)):
-        buf[n] = chr(data[n])
+        buf[n] = data[n]
     num = __hidapi.hid_get_feature_report(device, buf, len(data))
     if num < 0:
         raise RuntimeError('hid_get_feature_report() failed.')
