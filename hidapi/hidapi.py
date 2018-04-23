@@ -313,7 +313,7 @@ def hid_get_feature_report(device, data):
         raise RuntimeError('hid_get_feature_report() failed.')
     ba = bytearray(num)
     for n in range(num):
-        ba[n] = buf[n]
+        ba[n] = ord(buf[n])
     return ba
 
 
@@ -567,7 +567,7 @@ def hid_send_feature_report(device, data):
 
     buf = create_string_buffer(len(data))
     for n in range(len(data)):
-        buf[n] = chr(data[n])
+        buf[n] = data[n]
     num = __hidapi.hid_send_feature_report(device, buf, len(data))
     if num == -1:
         raise RuntimeError('hid_send_feature_report() failed.')
